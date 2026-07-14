@@ -9,12 +9,13 @@ from process_logger import ProcessLogger
 
 from django_qms.enums import QMSType
 from django_qms.models import Channel, XrayPointInTime
-from django_qms.tasks import (
-    xray_linked_storages,
-    xray_pull_data,
-    xray_push_data,
-    xray_remove_old_pits,
-)
+
+# Submodule imports (not the package) — the package __init__ imports this module
+# before those names exist, so package-level imports here are a circular import.
+from django_qms.tasks.xray.linked_storages import xray_linked_storages
+from django_qms.tasks.xray.pull_data import xray_pull_data
+from django_qms.tasks.xray.push_data import xray_push_data
+from django_qms.tasks.xray.remove_old_pits import xray_remove_old_pits
 
 logger = ProcessLogger(process_name="QMS_XRAY")
 
