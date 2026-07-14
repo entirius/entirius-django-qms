@@ -81,10 +81,11 @@ class CsvStorageManager(StorageManager):
         csv_path = self.connection_data.get("csv_path", None)
         if csv_path is None:
             raise FileExistsError(f"There is no CSV file for given path: {csv_path}")
-        csv_path = str(csv_path).replace("%DATA_DIR%", settings.DATA_DIR)
-        csv_path = csv_path.replace("%IMPORT_DIR%", settings.IMPORT_DIR)
-        csv_path = csv_path.replace("%EXPORT_DIR%", settings.EXPORT_DIR)
-        csv_path = csv_path.replace("%TMP_DIR%", settings.TMP_DIR)
+        # settings dirs may be pathlib.Path (BASE_DIR / "..."); str.replace needs str args
+        csv_path = str(csv_path).replace("%DATA_DIR%", str(settings.DATA_DIR))
+        csv_path = csv_path.replace("%IMPORT_DIR%", str(settings.IMPORT_DIR))
+        csv_path = csv_path.replace("%EXPORT_DIR%", str(settings.EXPORT_DIR))
+        csv_path = csv_path.replace("%TMP_DIR%", str(settings.TMP_DIR))
         csv_path = os.path.abspath(csv_path)
         data = get_quantities_as_dataset(csv_path)
         items = []
