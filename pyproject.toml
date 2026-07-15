@@ -1,6 +1,6 @@
 [project]
 name = "entirius-django-qms"
-version = "4.0.0"
+version = "4.0.1"
 description = "Quantity Management System — warehouse-level stock management for Volkanos"
 authors = [{ name = "Entirius" }]
 readme = "README.md"
