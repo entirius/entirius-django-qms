@@ -13,15 +13,15 @@ from django.utils import timezone
 from django_qms.bi import QM_ManageQuantitiesStartEvent
 from django_qms.enums import QMSType
 from django_qms.models import Channel, ZuluPointInTime
-from django_qms.tasks import (
-    zulu_create_pit_quantity,
-    zulu_create_pit_quantity_by_channel,
-    zulu_process_chain_is_done,
-    zulu_process_chain_is_starting,
-    zulu_push_data,
-    zulu_remove_old_pits,
-    zulu_split_and_setup_quantity,
-)
+
+# Submodule imports (not the package) — see xray/manage_quantities.py.
+from django_qms.tasks.zulu.create_pit_quantity import zulu_create_pit_quantity
+from django_qms.tasks.zulu.create_pit_quantity_by_channel import zulu_create_pit_quantity_by_channel
+from django_qms.tasks.zulu.process_chain_is_done import zulu_process_chain_is_done
+from django_qms.tasks.zulu.process_chain_is_starting import zulu_process_chain_is_starting
+from django_qms.tasks.zulu.push_data import zulu_push_data
+from django_qms.tasks.zulu.remove_old_pits import zulu_remove_old_pits
+from django_qms.tasks.zulu.split_and_setup_quantity import zulu_split_and_setup_quantity
 
 DOMAIN_NAME = QMSType.ZULU
 
