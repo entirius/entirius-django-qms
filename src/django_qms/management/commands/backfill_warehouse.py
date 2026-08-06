@@ -79,5 +79,6 @@ class Command(BaseCommand):
 
         items = [{"sku": sku, "quantity": qty} for sku, qty in stock_data]
         warehouse_service.bulk_upsert_stock(warehouse, items, allow_integration=True)
+        warehouse_service.update_last_synced(warehouse)
 
         self.stdout.write(self.style.SUCCESS(f"Backfilled {len(items)} stock records"))
