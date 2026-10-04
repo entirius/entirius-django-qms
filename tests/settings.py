@@ -9,6 +9,7 @@ Checkout-integration test modules (stock sync, signal chain, backfill) importors
 """
 
 import tempfile
+from importlib.util import find_spec
 
 import dj_database_url
 
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     "django_pim",
     "django_qms",
 ]
+# django_access when importable (zeno): tests/test_access_ownership.py proves the access declarations.
+if find_spec("django_access"):
+    INSTALLED_APPS.append("django_access")
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

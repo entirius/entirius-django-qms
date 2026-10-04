@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+- Access: the module declares its own access areas on its AppConfig and its admin views (copied from the
+  entirius-django-access defaults; behaviour unchanged).
+
 ## 4.0.2 — 2026-08-06
 
 - Stamp `last_synced_at` after integration backfill.
