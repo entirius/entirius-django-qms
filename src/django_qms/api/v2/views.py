@@ -57,6 +57,7 @@ def _raise_pydantic_as_drf(exc: ValidationError) -> None:
 class WarehouseViewSet(ViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminUser]
+    access_area = "qms.stock"
 
     @extend_schema(
         summary="List warehouses",

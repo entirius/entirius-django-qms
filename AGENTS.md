@@ -22,6 +22,8 @@ signal-driven sync to downstream consumers.
 - Never rename the package / Django app_label / DB table prefix `django_qms` — it is a schema contract.
 - Migrations are part of the public contract — never edit an already released migration.
 - Default: do not commit — git is the user's call.
+- Access: areas live on the AppConfig (`access_areas`, `access_route_rules`), every admin view carries
+  `access_area`; a new admin route without one fails `tests/test_access_ownership.py`.
 
 ## Architecture
 
