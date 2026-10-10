@@ -13,6 +13,8 @@ signal-driven sync to downstream consumers.
 | `make fix` | auto-fix lint + format |
 | `make test` | test suite (pytest + pytest-django) |
 
+Tests need PostgreSQL: set `DATABASE_URL` (see `tests/settings.py`).
+
 ## Conventions
 
 - English only: code, docs, commits, branches, PRs.
@@ -24,6 +26,7 @@ signal-driven sync to downstream consumers.
 - Default: do not commit — git is the user's call.
 - Access: areas live on the AppConfig (`access_areas`, `access_route_rules`), every admin view carries
   `access_area`; a new admin route without one fails `tests/test_access_ownership.py`.
+- No AI attribution in commits or PR descriptions.
 
 ## Architecture
 
@@ -37,6 +40,16 @@ signal-driven sync to downstream consumers.
 - `management/commands/` — `warehouse_import_csv`, `backfill_warehouse` (requires checkout),
   legacy pipeline runners (`qms-manage-quantities`, `qms-status`).
 - `storage_managers.py` — pluggable storage backends for the legacy pipelines.
+- `urls.py` — mounts the admin API under `api/qms/v2/admin/`.
+
+| Topic | Where |
+|---|---|
+| Overview | `docs/index.md` |
+| Warehouse data model | `docs/warehouse.md` |
+| Stock sync to the checkout | `docs/checkout-sync.md` |
+| Settings and defaults | `docs/configuration.md` |
+| ERD | `docs/erd.md` |
+| Migration notes | `docs/migration.md` |
 
 ## Gotchas
 
