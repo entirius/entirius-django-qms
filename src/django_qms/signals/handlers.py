@@ -27,10 +27,11 @@ def on_warehouse_stock_changed_checkout(sender, warehouse, skus, **kwargs):
         logger.debug("Skipping inactive warehouse %s", warehouse.code)
         return
 
+    # RuntimeError: an app that is installed but not in INSTALLED_APPS raises it on model import, not ImportError.
     try:
         from django_checkout.models import Channel as CheckoutChannel
         from django_checkout.services.stock_sync_service import sync_warehouse_to_checkout
-    except ImportError:
+    except (ImportError, RuntimeError):
         logger.debug("django_checkout not installed, skipping stock sync")
         return
 
@@ -59,7 +60,7 @@ def on_warehouse_stock_changed_matrix(sender, warehouse, skus, **kwargs):
 
     try:
         from django_pim.signals.dispatch import enqueue_product_sync
-    except ImportError:
+    except (ImportError, RuntimeError):
         logger.debug("django_pim not installed, skipping matrix enqueue")
         return
 

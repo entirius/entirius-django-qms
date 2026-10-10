@@ -6,9 +6,10 @@
 
 import pytest
 
-pytest.importorskip("django_checkout")
-
 from django_qms.settings import QMS_SUPPLIER_CODE_PREFIX
+from tests.markers import requires_checkout
+
+pytestmark = requires_checkout
 
 
 def _sync(warehouse, skus_with_quantities):

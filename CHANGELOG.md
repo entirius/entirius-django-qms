@@ -6,6 +6,8 @@
   entirius-django-access defaults; behaviour unchanged).
 - OpenAPI: the warehouse stock, products and stock-by-SKU operations carry the `Warehouses` tag (they fell back to
   the default tag). Metadata only.
+- Optional sibling apps that are installed but not enabled no longer crash imports (`RuntimeError` is caught like
+  `ImportError`).
 
 ## 4.0.2 — 2026-08-06
 

@@ -4,8 +4,8 @@
 
 """Standalone test settings for django-qms.
 
-Checkout-integration test modules (stock sync, signal chain, backfill) importorskip
-`django_checkout`; the base suite runs with regional + qms only.
+Checkout-integration tests (stock sync, signal chain, backfill) are skipped unless
+`django_checkout` is in INSTALLED_APPS; the base suite runs with regional + qms only.
 """
 
 import tempfile
