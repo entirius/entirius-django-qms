@@ -53,8 +53,8 @@ Tests need PostgreSQL: set `DATABASE_URL` (see `tests/settings.py`).
 
 ## Gotchas
 
-- `django_checkout` and `django_pim` integrations are lazy imports with `try/except ImportError`
-  no-op fallbacks — the module works standalone.
+- `django_checkout` and `django_pim` integrations are lazy imports with `try/except (ImportError, RuntimeError)`
+  no-op fallbacks (`RuntimeError`: installed but not in `INSTALLED_APPS`) — the module works standalone.
 - Checkout-integration tests (`test_stock_sync_service`, `test_signal_chain`, backfill class)
   `importorskip` / `skipif` on `django_checkout` — they activate once checkout is installed.
 - Stock propagation is signal-driven: `bulk_upsert_stock` fires `warehouse_stock_changed`;
