@@ -99,6 +99,7 @@ class WarehouseViewSet(ViewSet):
             OpenApiParameter(name="search", description="Search by SKU", type=str, required=False),
         ],
         responses={200: WarehouseStockListResponse, 404: {"description": "Not found"}},
+        tags=["Warehouses"],
     )
     @action(detail=False, methods=["get"], url_path="(?P<code>[^/.]+)/stock")
     def stock_list(self, request, code=None):
@@ -128,6 +129,7 @@ class WarehouseViewSet(ViewSet):
             400: {"description": "Validation error or warehouse not editable"},
             404: {"description": "Warehouse not found"},
         },
+        tags=["Warehouses"],
     )
     @action(detail=False, methods=["patch"], url_path="(?P<code>[^/.]+)/stock")
     def stock_bulk_edit(self, request, code=None):
@@ -160,6 +162,7 @@ class WarehouseViewSet(ViewSet):
             400: {"description": "Validation error"},
             404: {"description": "Warehouse not found"},
         },
+        tags=["Warehouses"],
     )
     @action(detail=False, methods=["post"], url_path="(?P<code>[^/.]+)/stock/import-csv")
     def stock_import_csv(self, request, code=None):
@@ -202,6 +205,7 @@ class WarehouseViewSet(ViewSet):
             200: {"description": "Paginated product list with has_stock flag"},
             404: {"description": "Not found"},
         },
+        tags=["Warehouses"],
     )
     @action(detail=False, methods=["get"], url_path="(?P<code>[^/.]+)/products")
     def products(self, request, code=None):
@@ -229,6 +233,7 @@ class WarehouseViewSet(ViewSet):
         description="Product-centric view: returns all active warehouses with stock quantity for this SKU.",
         parameters=[OpenApiParameter(name="sku", location="path", description="Product SKU")],
         responses={200: {"description": "List of warehouse stock entries"}},
+        tags=["Warehouses"],
     )
     @action(detail=False, methods=["get"], url_path="stock-by-sku/(?P<sku>[^/.]+)")
     def stock_by_sku_list(self, request, sku=None):
@@ -241,6 +246,7 @@ class WarehouseViewSet(ViewSet):
         parameters=[OpenApiParameter(name="sku", location="path", description="Product SKU")],
         request=WarehouseStockBySkuRequest,
         responses={200: {"description": "Updated items"}, 400: {"description": "Validation error"}},
+        tags=["Warehouses"],
     )
     @action(detail=False, methods=["patch"], url_path="stock-by-sku/(?P<sku>[^/.]+)")
     def stock_by_sku_edit(self, request, sku=None):

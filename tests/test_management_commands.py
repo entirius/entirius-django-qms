@@ -4,7 +4,6 @@
 
 """Tests for management commands: warehouse_import_csv and backfill_warehouse."""
 
-import importlib.util
 import io
 import tempfile
 
@@ -13,6 +12,7 @@ from django.core.management import call_command
 from django.core.management.base import CommandError
 
 from django_qms.models import Warehouse, WarehouseStock
+from tests.markers import requires_checkout
 
 
 @pytest.mark.django_db
@@ -37,7 +37,7 @@ class TestWarehouseImportCSVCommand:
 
 
 @pytest.mark.django_db
-@pytest.mark.skipif(importlib.util.find_spec("django_checkout") is None, reason="django_checkout not installed")
+@requires_checkout
 class TestBackfillWarehouseCommand:
     def test_backfill_creates_warehouse_and_stock(self, checkout_channel):
         from django_checkout.models import ProductRepresentation, Stock, Supplier
