@@ -49,9 +49,10 @@ def list_products_for_warehouse(warehouse: Warehouse, search: str | None = None)
     """
     from django.db.models import Exists, OuterRef, Subquery
 
+    # RuntimeError: an app that is installed but not in INSTALLED_APPS raises it on model import, not ImportError.
     try:
         from django_pim.models import RealProduct
-    except ImportError:
+    except (ImportError, RuntimeError):
         return WarehouseStock.objects.none()
 
     qs = RealProduct.objects.only("sku").order_by("sku")

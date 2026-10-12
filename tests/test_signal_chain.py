@@ -12,10 +12,12 @@ pytest.importorskip("django_checkout")
 
 from django_qms.models import WarehouseStock
 from django_qms.services import warehouse_service
+from tests.markers import requires_checkout
 
 
 @pytest.mark.django_db
 class TestSignalChainEndToEnd:
+    @requires_checkout
     @patch("django_checkout.services.stock_sync_service.sync_warehouse_to_checkout")
     def test_upsert_triggers_checkout_sync(self, mock_sync, manual_warehouse, checkout_channel, checkout_channel_2):
         """bulk_upsert_stock -> signal -> checkout sync service called with data."""
@@ -29,6 +31,7 @@ class TestSignalChainEndToEnd:
         # Handler resolves QMS Channel idx -> Checkout Channel objects
         assert len(call_kwargs["channels"]) == 2
 
+    @requires_checkout
     @patch("django_checkout.services.stock_sync_service.sync_warehouse_to_checkout")
     def test_multiple_skus_single_signal(self, mock_sync, manual_warehouse, checkout_channel, checkout_channel_2):
         """All SKUs bundled in a single signal call."""

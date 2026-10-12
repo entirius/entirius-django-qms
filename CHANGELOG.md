@@ -1,0 +1,25 @@
+# Changelog
+
+## 4.1.0 — 2026-10-12
+
+- Access: the module declares its own access areas on its AppConfig and its admin views (copied from the
+  entirius-django-access defaults; behaviour unchanged).
+- OpenAPI: the warehouse stock, products and stock-by-SKU operations carry the `Warehouses` tag (they fell back to
+  the default tag). Metadata only.
+- Optional sibling apps that are installed but not enabled no longer crash imports (`RuntimeError` is caught like
+  `ImportError`).
+
+## 4.0.2 — 2026-08-06
+
+- Stamp `last_synced_at` after integration backfill.
+
+## 4.0.1 — 2026-07-15
+
+- Substitute only the `csv_path` placeholders the host actually defines;
+  support pathlib settings dirs.
+
+## 4.0.0 — 2026-07-10
+
+- Initial public release: quantity management — warehouses (manual and
+  integration-fed), channel-scoped stock, and checkout synchronization.
+- Migrations squashed into a single initial migration for the Entirius epoch.

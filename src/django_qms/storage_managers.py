@@ -48,9 +48,10 @@ class StorageManager:
 
 class CheckoutStorageManager(StorageManager):
     def push_data(self, data: StorageDataSet):
+        # RuntimeError: an app that is installed but not in INSTALLED_APPS raises it on model import, not ImportError.
         try:
             from django_checkout.models import Stock
-        except ImportError:
+        except (ImportError, RuntimeError):
             raise Exception("CheckoutStorageManager.push_data() can not import django_checkout module.")
         channel_idx = self.connection_data.get("channel_idx", None)
         if channel_idx is None:
