@@ -1,6 +1,6 @@
 [project]
 name = "entirius-django-qms"
-version = "4.1.0"
+version = "4.1.1rc1"
 description = "Quantity management for Entirius: warehouse-level stock and availability for the catalog and the checkout"
 keywords = ["django", "inventory", "stock", "warehouse", "ecommerce", "entirius"]
 classifiers = [
