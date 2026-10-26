@@ -31,9 +31,10 @@ class Command(BaseCommand):
         warehouse_code = options["warehouse_code"] or supplier_code
         dry_run = options["dry_run"]
 
+        # RuntimeError: an app that is installed but not in INSTALLED_APPS raises it on model import, not ImportError.
         try:
             from django_checkout.models import Channel, Stock, Supplier
-        except ImportError as exc:
+        except (ImportError, RuntimeError) as exc:
             raise CommandError("django_checkout is required for backfill") from exc
 
         try:

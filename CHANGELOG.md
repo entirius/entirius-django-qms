@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.1.1rc1 — 2026-10-26
+
+## 4.1.0 — 2026-10-12
+
+- Access: the module declares its own access areas on its AppConfig and its admin views (copied from the
+  entirius-django-access defaults; behaviour unchanged).
+- OpenAPI: the warehouse stock, products and stock-by-SKU operations carry the `Warehouses` tag (they fell back to
+  the default tag). Metadata only.
+- Optional sibling apps that are installed but not enabled no longer crash imports (`RuntimeError` is caught like
+  `ImportError`).
+
 ## 4.0.2 — 2026-08-06
 
 - Stamp `last_synced_at` after integration backfill.
