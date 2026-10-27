@@ -2,6 +2,9 @@
 
 ## 4.1.1rc1 — 2026-10-26
 
+- The admin `stock-by-sku/<sku>/` and `stock-by-sku/<sku>/edit/` routes accept a SKU with a slash (`ENT-1001/N`); they
+  answered 404. A SKU that itself ends in `/edit` reaches the edit route (PATCH only).
+
 ## 4.1.0 — 2026-10-12
 
 - Access: the module declares its own access areas on its AppConfig and its admin views (copied from the
