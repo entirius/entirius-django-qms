@@ -22,6 +22,6 @@ urlpatterns = [
     path("warehouses/<str:code>/stock/edit/", stock_bulk_edit, name="qms-stock-bulk-edit"),
     path("warehouses/<str:code>/stock/import-csv/", stock_import_csv, name="qms-stock-import-csv"),
     path("warehouses/<str:code>/products/", products_list, name="qms-products-list"),
-    path("stock-by-sku/<str:sku>/", stock_by_sku_list, name="qms-stock-by-sku-list"),
-    path("stock-by-sku/<str:sku>/edit/", stock_by_sku_edit, name="qms-stock-by-sku-edit"),
+    path("stock-by-sku/<path:sku>/edit/", stock_by_sku_edit, name="qms-stock-by-sku-edit"),
+    path("stock-by-sku/<path:sku>/", stock_by_sku_list, name="qms-stock-by-sku-list"),
 ]
