@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.1.1rc1 — 2026-10-26
+## 4.1.1 — 2026-10-27
 
 - The admin `stock-by-sku/<sku>/` and `stock-by-sku/<sku>/edit/` routes accept a SKU with a slash (`ENT-1001/N`); they
   answered 404. A SKU that itself ends in `/edit` reaches the edit route (PATCH only).

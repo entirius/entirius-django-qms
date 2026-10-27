@@ -517,7 +517,7 @@ wheels = [
 
 [[package]]
 name = "entirius-django-qms"
-version = "4.1.1rc1"
+version = "4.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "celery" },
